@@ -1,0 +1,10 @@
+from scipy.stats import binom
+
+def distribucion_binomial(n, k, p):
+    return binom.pmf(k, n, p)
+
+n = 10
+k = 5
+p = 0.5
+probabilidad_binomial = distribucion_binomial(n, k, p)
+print("Probabilidad de obtener 5 éxitos en 10 ensayos:", probabilidad_binomial)

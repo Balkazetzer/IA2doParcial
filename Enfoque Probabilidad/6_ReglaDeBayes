@@ -1,0 +1,8 @@
+def regla_de_bayes(p_enfermedad, p_prueba_dado_enfermedad, p_prueba):
+    return (p_enfermedad * p_prueba_dado_enfermedad) / p_prueba
+
+p_enfermedad = 0.01
+p_prueba_dado_enfermedad = 0.9
+p_prueba = 0.1
+probabilidad_enfermedad_dado_prueba = regla_de_bayes(p_enfermedad, p_prueba_dado_enfermedad, p_prueba)
+print("Probabilidad de tener la enfermedad dado un resultado positivo:", probabilidad_enfermedad_dado_prueba)

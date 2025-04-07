@@ -1,0 +1,5 @@
+# Ejemplo de probabilidad a priori: Probabilidad de sacar un as de una baraja
+def probabilidad_a_priori():
+    num_as = 4
+    num_cartas = 52
+    return num_as / num_cartas

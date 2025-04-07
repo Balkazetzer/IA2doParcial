@@ -1,0 +1,7 @@
+def probabilidad_condicionada(p_lluvia_nubes, p_nubes):
+    return p_lluvia_nubes / p_nubes
+
+p_lluvia_nubes = 0.4
+p_nubes = 0.5
+probabilidad_lluvia_dado_nubes = probabilidad_condicionada(p_lluvia_nubes, p_nubes)
+print("Probabilidad de que llueva dado que hay nubes:", probabilidad_lluvia_dado_nubes)

@@ -7,6 +7,3 @@ def lanzar_dado(n=1000):
     probabilidades = frecuencias / n
     return probabilidades
 
-# Ejemplo de uso
-probabilidades_dado = lanzar_dado()
-print("Probabilidades de lanzar un dado:", probabilidades_dado)

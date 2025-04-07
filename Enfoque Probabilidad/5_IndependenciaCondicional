@@ -1,0 +1,8 @@
+def independencia_condicional(p_A_dado_C, p_B_dado_C, p_C):
+    return p_A_dado_C * p_B_dado_C * p_C
+
+p_A_dado_C = 0.6
+p_B_dado_C = 0.7
+p_C = 0.8
+probabilidad_independiente = independencia_condicional(p_A_dado_C, p_B_dado_C, p_C)
+print("Probabilidad conjunta de A y B dado C (independencia condicional):", probabilidad_independiente)
