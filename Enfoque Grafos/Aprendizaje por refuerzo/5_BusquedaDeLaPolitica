@@ -1,0 +1,32 @@
+import numpy as np
+
+def busqueda_politica(transiciones, recompensas, gamma=0.9):
+    # Inicializar la política y la tabla de valores
+    politica = np.zeros(len(transiciones), dtype=int)
+    V = np.zeros(len(transiciones))
+
+    while True:
+        # Evaluación de la política
+        while True:
+            delta = 0
+            for s in range(len(transiciones)):
+                v = V[s]
+                a = politica[s]
+                V[s] = sum(transiciones[s, a] * (recompensas[s, a] + gamma * V))
+                delta = max(delta, abs(v - V[s]))
+            if delta < 1e-3:
+                break
+
+        # Mejora de la política
+        policy_stable = True
+        for s in range(len(transiciones)):
+            old_action = politica[s]
+            action_values = np.array([sum(transiciones[s, a] * (recompensas[s, a] + gamma * V)) for a in range(len(transiciones[s]))])
+            politica[s] = np.argmax(action_values)
+            if old_action != politica[s]:
+                policy_stable = False
+        if policy_stable:
+            break
+
+    return politica, V
+

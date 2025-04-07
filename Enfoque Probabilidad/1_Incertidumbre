@@ -1,0 +1,12 @@
+import numpy as np
+
+# Ejemplo de incertidumbre: Lanzar un dado
+def lanzar_dado(n=1000):
+    resultados = np.random.randint(1, 7, size=n)
+    frecuencias = np.bincount(resultados, minlength=6)
+    probabilidades = frecuencias / n
+    return probabilidades
+
+# Ejemplo de uso
+probabilidades_dado = lanzar_dado()
+print("Probabilidades de lanzar un dado:", probabilidades_dado)

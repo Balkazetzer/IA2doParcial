@@ -1,0 +1,10 @@
+import numpy as np
+
+def exploracion_explotacion(Q, estado, epsilon=0.1):
+    if np.random.rand() < epsilon:
+        # Exploración: elegir una acción aleatoria
+        return np.random.choice(len(Q[estado]))
+    else:
+        # Explotación: elegir la mejor acción conocida
+        return np.argmax(Q[estado])
+
