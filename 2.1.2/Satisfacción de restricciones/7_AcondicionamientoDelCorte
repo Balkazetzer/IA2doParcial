@@ -1,0 +1,42 @@
+from itertools import product
+
+def es_valida(asignacion, restricciones):
+    return all(r(asignacion) for r in restricciones)
+
+def resolver_condicionado(asignacion_fija, variables, dominio, restricciones):
+    if len(asignacion_fija) == len(variables):
+        return asignacion_fija
+    for v in variables:
+        if v not in asignacion_fija:
+            for valor in dominio[v]:
+                nueva = asignacion_fija.copy()
+                nueva[v] = valor
+                if es_valida(nueva, restricciones):
+                    resultado = resolver_condicionado(nueva, variables, dominio, restricciones)
+                    if resultado:
+                        return resultado
+    return None
+
+def acondicionamiento_corte(variables, dominio, restricciones, corte):
+    resto_variables = [v for v in variables if v not in corte]
+    combinaciones = list(product(*[dominio[v] for v in corte]))
+
+    for valores in combinaciones:
+        asignacion_base = dict(zip(corte, valores))
+        if not es_valida(asignacion_base, restricciones):
+            continue
+        resultado = resolver_condicionado(asignacion_base, variables, dominio, restricciones)
+        if resultado:
+            return resultado
+    return None
+
+variables = ['x', 'y', 'z']
+dominio = {'x': [1, 2], 'y': [1, 2], 'z': [1, 2]}
+restricciones = [
+    lambda a: a.get('x', 0) != a.get('y', 0),
+    lambda a: a.get('y', 0) != a.get('z', 0)
+]
+
+corte = ['x']  # condicionamos sobre 'x'
+solucion = acondicionamiento_corte(variables, dominio, restricciones, corte)
+print("Solución con acondicionamiento del corte:", solucion)

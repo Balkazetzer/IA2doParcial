@@ -1,0 +1,21 @@
+# Teoría de Juegos: Equilibrios y Mecanismos
+def equilibrio_nash(jugadores, estrategias, pagos):
+    """
+    Encuentra el equilibrio de Nash en un juego.
+    :param jugadores: Lista de jugadores.
+    :param estrategias: Diccionario de estrategias por jugador.
+    :param pagos: Diccionario de pagos por combinación de estrategias.
+    :return: Equilibrio de Nash.
+    """
+    equilibrio = {}
+    for jugador in jugadores:
+        mejor_estrategia = max(estrategias[jugador], key=lambda s: pagos[(jugador, s)])
+        equilibrio[jugador] = mejor_estrategia
+    return equilibrio
+
+# Ejemplo de uso
+jugadores = ['J1', 'J2']
+estrategias = {'J1': ['S1', 'S2'], 'J2': ['S1', 'S2']}
+pagos = {('J1', 'S1'): 5, ('J1', 'S2'): 3, ('J2', 'S1'): 4, ('J2', 'S2'): 6}
+equilibrio = equilibrio_nash(jugadores, estrategias, pagos)
+print(f"Equilibrio de Nash: {equilibrio}")

@@ -1,0 +1,24 @@
+def red_decision():
+    decisiones = {
+        "invertir": [("éxito", 0.6), ("fracaso", 0.4)],
+        "no_invertir": [("seguro", 1.0)]
+    }
+    utilidades = {
+        "éxito": 100,
+        "fracaso": -50,
+        "seguro": 10
+    }
+
+    mejor_utilidad = float('-inf')
+    mejor_accion = None
+
+    for accion, resultados in decisiones.items():
+        utilidad_esperada = sum(prob * utilidades[res] for res, prob in resultados)
+        print(f"Utilidad esperada de {accion}: {utilidad_esperada}")
+        if utilidad_esperada > mejor_utilidad:
+            mejor_utilidad = utilidad_esperada
+            mejor_accion = accion
+
+    print("Mejor acción:", mejor_accion)
+
+red_decision()

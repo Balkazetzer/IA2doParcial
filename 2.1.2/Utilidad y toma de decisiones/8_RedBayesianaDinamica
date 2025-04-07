@@ -1,0 +1,14 @@
+# Red Bayesiana Dinámica
+class RedBayesianaDinamica:
+    def __init__(self, nodos, probabilidades):
+        self.nodos = nodos
+        self.probabilidades = probabilidades
+
+    def probabilidad_conjunta(self, evidencia):
+        return 1.0
+
+# Ejemplo de uso
+nodos = ['A', 'B']
+probabilidades = {'A': 0.5, 'B': 0.8}
+red = RedBayesianaDinamica(nodos, probabilidades)
+print(f"Probabilidad conjunta: {red.probabilidad_conjunta({'A': True, 'B': False})}")

@@ -1,0 +1,23 @@
+# MDP Parcialmente Observable (POMDP)
+class POMDP:
+    def __init__(self, estados, acciones, observaciones, recompensas, transiciones, observaciones_prob, gamma=0.9):
+        self.estados = estados
+        self.acciones = acciones
+        self.observaciones = observaciones
+        self.recompensas = recompensas
+        self.transiciones = transiciones
+        self.observaciones_prob = observaciones_prob
+        self.gamma = gamma
+
+    def valor_estado(self, estado):
+        return max(sum(self.transiciones[(estado, accion)][sp] * (self.recompensas[(estado, accion, sp)] + self.gamma * self.valor_estado(sp)) for sp in self.estados) for accion in self.acciones)
+
+# Ejemplo de uso
+estados = ['A', 'B']
+acciones = ['1', '2']
+observaciones = ['O1', 'O2']
+recompensas = {('A', '1', 'B'): 10, ('A', '2', 'B'): 5, ('B', '1', 'A'): -1, ('B', '2', 'A'): 0}
+transiciones = {('A', '1'): {'B': 1.0}, ('A', '2'): {'B': 1.0}, ('B', '1'): {'A': 1.0}, ('B', '2'): {'A': 1.0}}
+observaciones_prob = {('A', 'O1'): 0.8, ('A', 'O2'): 0.2, ('B', 'O1'): 0.4, ('B', 'O2'): 0.6}
+pomdp = POMDP(estados, acciones, observaciones, recompensas, transiciones, observaciones_prob)
+print(f"Valor del estado A: {pomdp.valor_estado('A')}")

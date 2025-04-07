@@ -1,0 +1,35 @@
+import random
+
+def contar_conflictos(asignacion, restricciones):
+    return sum(not r(asignacion) for r in restricciones)
+
+def minimos_conflictos(variables, dominio, restricciones, max_intentos=100):
+    asignacion = {v: random.choice(dominio[v]) for v in variables}
+    
+    for _ in range(max_intentos):
+        if contar_conflictos(asignacion, restricciones) == 0:
+            return asignacion
+        variable_conflictiva = random.choice(variables)
+        mejor_valor = asignacion[variable_conflictiva]
+        min_conflictos = float('inf')
+        
+        for valor in dominio[variable_conflictiva]:
+            asignacion_temp = asignacion.copy()
+            asignacion_temp[variable_conflictiva] = valor
+            conflictos = contar_conflictos(asignacion_temp, restricciones)
+            if conflictos < min_conflictos:
+                min_conflictos = conflictos
+                mejor_valor = valor
+                
+        asignacion[variable_conflictiva] = mejor_valor
+    return None
+
+variables = ['x', 'y', 'z']
+dominio = {'x': [1, 2], 'y': [1, 2], 'z': [1, 2]}
+restricciones = [
+    lambda a: a['x'] != a['y'],
+    lambda a: a['y'] != a['z']
+]
+
+solucion = minimos_conflictos(variables, dominio, restricciones)
+print("Solución con mínimos conflictos:", solucion)

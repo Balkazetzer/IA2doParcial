@@ -1,0 +1,11 @@
+def utilidad(opcion):
+    utilidades = {
+        "ganar_100": 100,
+        "ganar_50": 50,
+        "nada": 0
+    }
+    return utilidades.get(opcion, 0)
+
+opciones = ["ganar_100", "ganar_50", "nada"]
+mejor_opcion = max(opciones, key=utilidad)
+print("Mejor opción según la utilidad:", mejor_opcion)

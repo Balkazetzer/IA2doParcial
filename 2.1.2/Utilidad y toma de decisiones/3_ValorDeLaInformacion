@@ -1,0 +1,14 @@
+def valor_informacion():
+    # Sin información
+    sin_info = {"éxito": 0.6, "fracaso": 0.4}
+    utilidad_sin_info = 0.6 * 100 + 0.4 * -50
+
+    # Con información perfecta (sabemos el resultado)
+    utilidad_con_info = max(100, -50)  # elegimos siempre el mejor
+
+    valor = utilidad_con_info - utilidad_sin_info
+    print("Utilidad sin información:", utilidad_sin_info)
+    print("Utilidad con información perfecta:", utilidad_con_info)
+    print("Valor de la información:", valor)
+
+valor_informacion()

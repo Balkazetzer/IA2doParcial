@@ -1,0 +1,33 @@
+def es_consistente(asignacion, restricciones):
+    for restriccion in restricciones:
+        if not restriccion(asignacion):
+            return False
+    return True
+
+def salto_atras_dirigido(asignacion, variables, dominio, restricciones, historial):
+    if len(asignacion) == len(variables):
+        return asignacion
+    
+    variable_actual = variables[len(asignacion)]
+    for valor in dominio[variable_actual]:
+        nueva_asignacion = asignacion.copy()
+        nueva_asignacion[variable_actual] = valor
+        if es_consistente(nueva_asignacion, restricciones):
+            resultado = salto_atras_dirigido(nueva_asignacion, variables, dominio, restricciones, historial)
+            if resultado:
+                return resultado
+        else:
+            historial.append(variable_actual)
+            if variable_actual in historial:
+                return None
+    return None
+
+variables = ['a', 'b', 'c']
+dominio = {'a': [1, 2], 'b': [1, 2], 'c': [1, 2]}
+restricciones = [
+    lambda a: a.get('a', 0) != a.get('b', 0),
+    lambda a: a.get('b', 0) != a.get('c', 0)
+]
+
+solucion = salto_atras_dirigido({}, variables, dominio, restricciones, [])
+print("Solución con salto atrás dirigido por conflictos:", solucion)
