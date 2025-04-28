@@ -1,0 +1,26 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
+# Generar datos de ejemplo
+np.random.seed(0)
+time_series = np.cumsum(np.random.normal(0, 1, 100))
+
+# Filtrado (suavizado exponencial)
+model = ExponentialSmoothing(time_series, trend=None, seasonal=None)
+fit = model.fit(smoothing_level=0.2)
+filtered = fit.fittedvalues
+
+# Predicción
+predicted = fit.forecast(10)
+
+# Suavizado
+smoothed = fit.fittedvalues
+
+# Graficar resultados
+plt.plot(time_series, label='Datos Originales')
+plt.plot(filtered, label='Filtrado', linestyle='--')
+plt.plot(range(100, 110), predicted, label='Predicción', linestyle='--')
+plt.plot(smoothed, label='Suavizado', linestyle='--')
+plt.legend()
+plt.show()

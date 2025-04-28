@@ -1,0 +1,46 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from particles import particles, distributions, resampling
+
+# Definir el modelo de transición y observación
+def transition_model(particles, noise=1.0):
+    return particles + np.random.normal(0, noise, size=particles.shape)
+
+def observation_model(particles, observation, noise=1.0):
+    return np.exp(-0.5 * ((particles - observation) / noise) ** 2) / (noise * np.sqrt(2 * np.pi))
+
+# Generar datos de ejemplo
+np.random.seed(0)
+true_values = np.cumsum(np.random.normal(0, 1, 100))
+observations = true_values + np.random.normal(0, 1, 100)
+
+# Inicializar partículas
+num_particles = 1000
+particles = np.random.normal(0, 1, num_particles)
+weights = np.ones(num_particles) / num_particles
+
+# Aplicar el filtrado de partículas
+estimates = []
+for observation in observations:
+    # Predicción
+    particles = transition_model(particles)
+
+    # Actualización de pesos
+    weights *= observation_model(particles, observation)
+    weights /= np.sum(weights)
+
+    # Re-muestreo
+    indices = resampling.systematic_resample(weights)
+    particles = particles[indices]
+    weights = np.ones(num_particles) / num_particles
+
+    # Estimación del estado
+    estimate = np.average(particles, weights=weights)
+    estimates.append(estimate)
+
+# Graficar resultados
+plt.plot(true_values, label='Valores Verdaderos')
+plt.plot(observations, label='Observaciones', linestyle='--')
+plt.plot(estimates, label='Estimaciones de Partículas', linestyle='--')
+plt.legend()
+plt.show()

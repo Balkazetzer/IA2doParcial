@@ -1,0 +1,26 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from pykalman import KalmanFilter
+
+# Generar datos de ejemplo
+np.random.seed(0)
+true_values = np.cumsum(np.random.normal(0, 1, 100))
+observations = true_values + np.random.normal(0, 1, 100)
+
+# Definir el filtro de Kalman
+kf = KalmanFilter(transition_matrices=[1],
+                  observation_matrices=[1],
+                  initial_state_mean=0,
+                  initial_state_covariance=1,
+                  observation_covariance=1,
+                  transition_covariance=0.01)
+
+# Aplicar el filtro de Kalman
+state_means, _ = kf.filter(observations)
+
+# Graficar resultados
+plt.plot(true_values, label='Valores Verdaderos')
+plt.plot(observations, label='Observaciones', linestyle='--')
+plt.plot(state_means, label='Estimaciones de Kalman', linestyle='--')
+plt.legend()
+plt.show()

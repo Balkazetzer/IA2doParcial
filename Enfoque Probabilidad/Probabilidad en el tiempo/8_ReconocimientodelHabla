@@ -1,0 +1,17 @@
+from hmmlearn import hmm
+import numpy as np
+
+# Definir un HMM simple para reconocimiento del habla
+model = hmm.GaussianHMM(n_components=3, covariance_type="diag", n_iter=100)
+
+# Generar datos de ejemplo (características de audio)
+np.random.seed(0)
+data = np.column_stack([np.sin(np.linspace(0, 10, 100)), np.cos(np.linspace(0, 10, 100))])
+
+# Ajustar el modelo a los datos
+model.fit(data)
+
+# Decodificar la secuencia de estados ocultos
+hidden_states = model.predict(data)
+
+print(f"Secuencia de estados ocultos: {hidden_states}")
