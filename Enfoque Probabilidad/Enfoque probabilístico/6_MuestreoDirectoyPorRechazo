@@ -1,0 +1,24 @@
+import random
+
+# Muestreo Directo
+def direct_sampling(probabilities):
+    return probabilities.index(random.choices(probabilities, weights=probabilities, k=1)[0])
+
+probabilities = [0.1, 0.3, 0.6]
+sample = direct_sampling(probabilities)
+print(f"Muestreo Directo: {sample}")
+
+# Muestreo por Rechazo
+def rejection_sampling(target_dist, proposal_dist, num_samples):
+    samples = []
+    while len(samples) < num_samples:
+        sample = random.choices(range(len(proposal_dist)), weights=proposal_dist, k=1)[0]
+        u = random.uniform(0, max(target_dist))
+        if u < target_dist[sample]:
+            samples.append(sample)
+    return samples
+
+target_dist = [0.1, 0.3, 0.6]
+proposal_dist = [0.2, 0.4, 0.4]
+samples = rejection_sampling(target_dist, proposal_dist, 10)
+print(f"Muestreo por Rechazo: {samples}")

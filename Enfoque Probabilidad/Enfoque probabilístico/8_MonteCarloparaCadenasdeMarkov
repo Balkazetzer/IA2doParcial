@@ -1,0 +1,27 @@
+import numpy as np
+
+# Función objetivo (distribución normal)
+def target_distribution(x):
+    return np.exp(-0.5 * x**2) / np.sqrt(2 * np.pi)
+
+# Propuesta de distribución (uniforme)
+def proposal_distribution(x):
+    return np.random.uniform(x - 1, x + 1)
+
+# Algoritmo de Metropolis-Hastings
+def metropolis_hastings(target_dist, proposal_dist, initial_state, num_samples):
+    samples = [initial_state]
+    current_state = initial_state
+    for _ in range(num_samples):
+        proposed_state = proposal_dist(current_state)
+        acceptance_ratio = min(1, target_dist(proposed_state) / target_dist(current_state))
+        if np.random.rand() < acceptance_ratio:
+            current_state = proposed_state
+        samples.append(current_state)
+    return samples
+
+initial_state = 0
+num_samples = 1000
+samples = metropolis_hastings(target_distribution, proposal_distribution, initial_state, num_samples)
+
+print(f"Muestras MCMC: {samples[:10]}")  # Mostrar las primeras 10 muestras

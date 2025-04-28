@@ -1,0 +1,11 @@
+# Regla de la Cadena
+
+# Probabilidades condicionales
+P_A = 0.5
+P_B_given_A = 0.8
+P_C_given_A_B = 0.6
+
+# Aplicar la Regla de la Cadena
+P_A_B_C = P_A * P_B_given_A * P_C_given_A_B
+
+print(f"P(A, B, C) = {P_A_B_C}")

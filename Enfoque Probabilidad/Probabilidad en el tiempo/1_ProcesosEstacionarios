@@ -1,0 +1,13 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generar una serie de tiempo estacionaria (ruido blanco)
+np.random.seed(0)
+white_noise = np.random.normal(0, 1, 1000)
+
+# Graficar la serie de tiempo
+plt.plot(white_noise)
+plt.title('Proceso Estacionario (Ruido Blanco)')
+plt.xlabel('Tiempo')
+plt.ylabel('Valor')
+plt.show()

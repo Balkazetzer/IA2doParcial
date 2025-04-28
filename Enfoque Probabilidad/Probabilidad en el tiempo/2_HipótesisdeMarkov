@@ -1,0 +1,22 @@
+import numpy as np
+
+# Matriz de transición
+transition_matrix = np.array([[0.7, 0.3],
+                              [0.4, 0.6]])
+
+# Estado inicial
+initial_state = np.array([1, 0])  # Comenzar en el estado 0
+
+# Número de pasos
+steps = 10
+
+# Simular el proceso de Markov
+states = [initial_state]
+for _ in range(steps):
+    next_state = np.dot(states[-1], transition_matrix)
+    states.append(next_state)
+
+# Convertir a una secuencia de estados
+state_sequence = [np.argmax(state) for state in states]
+
+print(f"Secuencia de estados: {state_sequence}")

@@ -1,0 +1,14 @@
+from pgmpy.factors.discrete import DiscreteFactor
+
+# Factores
+phi1 = DiscreteFactor(['A', 'B'], [2, 2], [0.1, 0.9, 0.4, 0.6])
+phi2 = DiscreteFactor(['B', 'C'], [2, 2], [0.2, 0.8, 0.5, 0.5])
+
+# Multiplicar factores
+phi = phi1 * phi2
+
+# Eliminar variable 'B'
+phi_sum_B = phi.marginalize(['B'], inplace=False)
+
+print("Factor después de eliminar B:")
+print(phi_sum_B)

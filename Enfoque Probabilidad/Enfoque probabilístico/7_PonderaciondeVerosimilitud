@@ -1,0 +1,18 @@
+import numpy as np
+
+# Distribución objetivo
+target_dist = np.array([0.1, 0.3, 0.6])
+
+# Muestras de la distribución propuesta
+proposal_samples = np.random.choice([0, 1, 2], size=1000, p=[0.2, 0.4, 0.4])
+
+# Pesos de las muestras
+weights = target_dist[proposal_samples] / [0.2, 0.4, 0.4][proposal_samples]
+
+# Normalizar pesos
+weights /= np.sum(weights)
+
+# Estimar probabilidad de cada estado
+estimated_prob = np.array([np.sum(weights[proposal_samples == i]) for i in range(3)])
+
+print(f"Probabilidades estimadas: {estimated_prob}")
