@@ -1,0 +1,18 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definir la posición real del robot
+true_position = np.array([5, 5])
+
+# Simular mediciones con ruido
+num_measurements = 100
+measurements = true_position + np.random.randn(num_measurements, 2)
+
+# Graficar la posición real y las mediciones
+plt.scatter(measurements[:, 0], measurements[:, 1], s=10, alpha=0.5, label='Mediciones')
+plt.scatter(true_position[0], true_position[1], s=100, color='red', label='Posición Real')
+plt.xlim(0, 10)
+plt.ylim(0, 10)
+plt.title('Incertidumbre en Mediciones')
+plt.legend()
+plt.show()

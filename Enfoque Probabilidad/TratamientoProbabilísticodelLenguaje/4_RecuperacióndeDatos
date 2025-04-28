@@ -1,0 +1,24 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Datos de ejemplo
+documents = [
+    "The economy is improving.",
+    "Unemployment rates are dropping.",
+    "The stock market is rising.",
+    "Housing prices are increasing."
+]
+
+# Consulta de ejemplo
+query = "economy improvement"
+
+# Vectorizar los documentos y la consulta
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(documents + [query])
+
+# Calcular la similitud coseno entre la consulta y los documentos
+similarities = cosine_similarity(X[-1], X[:-1]).flatten()
+
+# Obtener los documentos más relevantes
+most_similar_doc_index = similarities.argmax()
+print(f"Documento más relevante: {documents[most_similar_doc_index]}")

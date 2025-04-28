@@ -1,0 +1,22 @@
+from minisom import MiniSom
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generar datos de ejemplo
+data = np.random.rand(100, 3)
+
+# Crear y entrenar el SOM
+som = MiniSom(x=10, y=10, input_len=3, sigma=1.0, learning_rate=0.5)
+som.random_weights_init(data)
+som.train_random(data, 100)
+
+# Obtener las coordenadas de los nodos ganadores
+winners = np.array([som.winner(x) for x in data]).T
+
+# Graficar los resultados
+plt.figure(figsize=(10, 10))
+for cnt, xx in enumerate(data):
+    w = winners[:, cnt]
+    plt.text(w[0], w[1], str(cnt), color='k', fontdict={'weight': 'bold', 'size': 11})
+plt.title('Mapa Autoorganizado de Kohonen')
+plt.show()

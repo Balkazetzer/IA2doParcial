@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Crear una figura y un eje
+fig, ax = plt.subplots()
+
+# Generar datos de ejemplo
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# Graficar los datos
+ax.plot(x, y, label='sin(x)')
+
+# Añadir etiquetas y leyenda
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_title('Gráfico de sin(x)')
+ax.legend()
+
+# Mostrar el gráfico
+plt.show()

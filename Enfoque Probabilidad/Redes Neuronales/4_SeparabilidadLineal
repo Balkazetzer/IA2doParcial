@@ -1,0 +1,12 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generar datos linealmente separables
+np.random.seed(0)
+X = np.random.randn(100, 2)
+y = np.where(X[:, 0] + X[:, 1] > 0, 1, 0)
+
+# Graficar los datos
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap='bwr')
+plt.title('Datos Linealmente Separables')
+plt.show()

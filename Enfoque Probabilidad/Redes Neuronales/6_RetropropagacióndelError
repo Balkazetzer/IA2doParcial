@@ -1,0 +1,31 @@
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
+
+# Cargar el conjunto de datos MNIST
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+# Preprocesar los datos
+X_train = X_train.reshape(-1, 28*28).astype('float32') / 255.0
+X_test = X_test.reshape(-1, 28*28).astype('float32') / 255.0
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+# Crear el modelo MLP
+model = Sequential([
+    Dense(128, activation='relu', input_shape=(28*28,)),
+    Dense(64, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+# Compilar el modelo
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Entrenar el modelo utilizando retropropagación del error
+model.fit(X_train, y_train, epochs=5, batch_size=32, validation_split=0.2)
+
+# Evaluar el modelo
+test_loss, test_accuracy = model.evaluate(X_test, y_test)
+print(f"Precisión del modelo MLP: {test_accuracy}")

@@ -1,0 +1,33 @@
+import numpy as np
+
+# Definir la red de Hopfield
+class HopfieldNetwork:
+    def __init__(self, size):
+        self.size = size
+        self.weights = np.zeros((size, size))
+
+    def train(self, patterns):
+        for pattern in patterns:
+            self.weights += np.outer(pattern, pattern)
+        np.fill_diagonal(self.weights, 0)
+        self.weights /= self.size
+
+    def predict(self, pattern, steps=5):
+        for _ in range(steps):
+            for i in range(self.size):
+                pattern[i] = np.sign(np.dot(self.weights[i], pattern))
+        return pattern
+
+# Ejemplo de uso
+patterns = [
+    np.array([1, -1, 1, -1]),
+    np.array([-1, 1, -1, 1])
+]
+
+network = HopfieldNetwork(size=4)
+network.train(patterns)
+
+test_pattern = np.array([1, -1, -1, 1])
+predicted_pattern = network.predict(test_pattern)
+
+print(f"Patrón predicho: {predicted_pattern}")

@@ -1,0 +1,18 @@
+from nltk.translate import IBMModel1, AlignedSent
+from nltk.translate.ribes_score import precision, recall
+
+# Datos de ejemplo (alineaciones de oraciones en inglés y francés)
+aligned_sents = [
+    AlignedSent(['the', 'house'], ['la', 'maison']),
+    AlignedSent(['the', 'cat'], ['le', 'chat']),
+    AlignedSent(['house'], ['maison']),
+    AlignedSent(['cat'], ['chat'])
+]
+
+# Entrenar el modelo IBM 1
+ibm1 = IBMModel1(aligned_sents, 5)
+
+# Traducir una oración de ejemplo
+source_sentence = ['the', 'house']
+translation = ibm1.translate(source_sentence)
+print(f"Traducción: {translation}")

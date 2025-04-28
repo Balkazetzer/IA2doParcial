@@ -1,0 +1,58 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definir el espacio de estado
+x_min, x_max = 0, 10
+y_min, y_max = 0, 10
+
+# Número de partículas
+num_particles = 1000
+
+# Inicializar partículas aleatoriamente
+particles = np.random.rand(num_particles, 2)
+particles[:, 0] = particles[:, 0] * (x_max - x_min) + x_min
+particles[:, 1] = particles[:, 1] * (y_max - y_min) + y_min
+
+# Mapa (obstáculos)
+map_resolution = 50
+map_size = (x_max - x_min, y_max - y_min)
+occupancy_grid = np.zeros((map_resolution, map_resolution))
+
+# Simular SLAM
+def slam(particles, occupancy_grid, num_iterations=10):
+    for _ in range(num_iterations):
+        # Mover partículas (modelo de movimiento simple)
+        particles[:, 0] += np.random.randn(num_particles) * 0.1
+        particles[:, 1] += np.random.randn(num_particles) * 0.1
+
+        # Actualizar pesos de las partículas (modelo de sensor simple)
+        weights = np.random.rand(num_particles)
+        weights /= np.sum(weights)
+
+        # Re-muestreo
+        indices = np.random.choice(range(num_particles), size=num_particles, p=weights)
+        particles = particles[indices]
+
+        # Actualizar el mapa de ocupación
+        for particle in particles:
+            x_idx = int((particle[0] - x_min) / map_size[0] * map_resolution)
+            y_idx = int((particle[1] - y_min) / map_size[1] * map_resolution)
+            occupancy_grid[y_idx, x_idx] += 1
+
+    return particles, occupancy_grid
+
+# Ejecutar SLAM
+particles, occupancy_grid = slam(particles, occupancy_grid)
+
+# Graficar las partículas y el mapa de ocupación
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.scatter(particles[:, 0], particles[:, 1], s=10, alpha=0.5)
+plt.xlim(x_min, x_max)
+plt.ylim(y_min, y_max)
+plt.title('Partículas')
+
+plt.subplot(1, 2, 2)
+plt.imshow(occupancy_grid, cmap='hot', interpolation='nearest')
+plt.title('Mapa de Ocupación')
+plt.show()

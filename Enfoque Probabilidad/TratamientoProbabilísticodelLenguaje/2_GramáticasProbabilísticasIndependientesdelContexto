@@ -1,0 +1,16 @@
+import nltk
+from nltk import PCFG, nonterminals, Production
+
+# Definir una gramática PCFG simple
+grammar = PCFG.fromstring("""
+    S -> NP VP [1.0]
+    NP -> 'John' [0.2] | 'Mary' [0.3] | 'Bob' [0.5]
+    VP -> V NP [0.7] | V NP PP [0.3]
+    V -> 'saw' [0.4] | 'ate' [0.6]
+    PP -> P NP [1.0]
+    P -> 'with' [0.6] | 'under' [0.4]
+""")
+
+# Generar una oración aleatoria
+sentence = list(grammar.generate())
+print(f"Oración generada: {' '.join(sentence)}")

@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definir el espacio de estado
+x_min, x_max = 0, 10
+y_min, y_max = 0, 10
+
+# Número de partículas
+num_particles = 1000
+
+# Inicializar partículas aleatoriamente
+particles = np.random.rand(num_particles, 2)
+particles[:, 0] = particles[:, 0] * (x_max - x_min) + x_min
+particles[:, 1] = particles[:, 1] * (y_max - y_min) + y_min
+
+# Simular la localización de Monte-Carlo
+def monte_carlo_localization(particles, num_iterations=10):
+    for _ in range(num_iterations):
+        # Mover partículas (modelo de movimiento simple)
+        particles[:, 0] += np.random.randn(num_particles) * 0.1
+        particles[:, 1] += np.random.randn(num_particles) * 0.1
+
+        # Actualizar pesos de las partículas (modelo de sensor simple)
+        weights = np.random.rand(num_particles)
+        weights /= np.sum(weights)
+
+        # Re-muestreo
+        indices = np.random.choice(range(num_particles), size=num_particles, p=weights)
+        particles = particles[indices]
+
+    return particles
+
+# Ejecutar la localización de Monte-Carlo
+particles = monte_carlo_localization(particles)
+
+# Graficar las partículas
+plt.scatter(particles[:, 0], particles[:, 1], s=10, alpha=0.5)
+plt.xlim(x_min, x_max)
+plt.ylim(y_min, y_max)
+plt.title('Localización de Monte-Carlo')
+plt.show()

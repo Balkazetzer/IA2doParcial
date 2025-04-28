@@ -1,0 +1,31 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definir la longitud de los eslabones del brazo robótico
+L1 = 5
+L2 = 5
+
+# Posición deseada del efector final
+target = np.array([7, 2])
+
+# Cinemática inversa para un brazo robótico de 2 eslabones
+def inverse_kinematics(target, L1, L2):
+    x, y = target
+    cos_theta2 = (x**2 + y**2 - L1**2 - L2**2) / (2 * L1 * L2)
+    theta2 = np.arccos(cos_theta2)
+    k1 = L1 + L2 * cos_theta2
+    k2 = L2 * np.sin(theta2)
+    theta1 = np.arctan2(y, x) - np.arctan2(k2, k1)
+    return theta1, theta2
+
+# Calcular las configuraciones de las articulaciones
+theta1, theta2 = inverse_kinematics(target, L1, L2)
+
+# Graficar el brazo robótico
+plt.plot([0, L1 * np.cos(theta1), L1 * np.cos(theta1) + L2 * np.cos(theta1 + theta2)],
+         [0, L1 * np.sin(theta1), L1 * np.sin(theta1) + L2 * np.sin(theta1 + theta2)], 'o-')
+plt.plot(target[0], target[1], 'ro')  # Posición deseada
+plt.xlim(-10, 10)
+plt.ylim(-10, 10)
+plt.title('Cinemática Inversa')
+plt.show()

@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definir el modelo dinámico simple de un robot
+def robot_dynamics(x, u, dt):
+    # x: estado [posición, velocidad]
+    # u: entrada de control [fuerza]
+    # dt: intervalo de tiempo
+    x_next = x + dt * np.array([x[1], u])
+    return x_next
+
+# Simular el control de un robot
+x = np.array([0, 0])  # Estado inicial [posición, velocidad]
+dt = 0.1
+T = 10  # Tiempo total de simulación
+time = np.arange(0, T, dt)
+positions = []
+
+for t in time:
+    u = np.sin(t)  # Entrada de control (fuerza)
+    x = robot_dynamics(x, u, dt)
+    positions.append(x[0])
+
+# Graficar la posición del robot a lo largo del tiempo
+plt.plot(time, positions)
+plt.xlabel('Tiempo')
+plt.ylabel('Posición')
+plt.title('Dinámica y Control de un Robot')
+plt.show()

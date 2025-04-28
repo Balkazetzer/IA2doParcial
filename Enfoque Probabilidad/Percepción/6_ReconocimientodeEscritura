@@ -1,0 +1,21 @@
+import cv2
+import pytesseract
+import matplotlib.pyplot as plt
+
+# Cargar una imagen de ejemplo con texto escrito a mano
+image = cv2.imread('ruta/a/tu/imagen_con_texto.jpg')
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Aplicar un filtro para mejorar la calidad del texto
+gray = cv2.medianBlur(gray, 3)
+
+# Utilizar Tesseract para reconocer el texto
+text = pytesseract.image_to_string(gray)
+
+# Mostrar el texto reconocido
+print(f"Texto reconocido: {text}")
+
+# Mostrar la imagen
+plt.imshow(gray, cmap='gray')
+plt.title('Reconocimiento de Escritura')
+plt.show()

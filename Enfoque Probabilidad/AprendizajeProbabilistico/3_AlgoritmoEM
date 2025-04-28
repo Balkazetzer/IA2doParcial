@@ -1,0 +1,18 @@
+from sklearn.mixture import GaussianMixture
+from sklearn.datasets import make_blobs
+import matplotlib.pyplot as plt
+
+# Generar datos de ejemplo
+X, _ = make_blobs(n_samples=300, centers=4, random_state=42)
+
+# Crear y ajustar el modelo GMM con el algoritmo EM
+gmm = GaussianMixture(n_components=4, random_state=42)
+gmm.fit(X)
+
+# Predecir las etiquetas de los clusters
+labels = gmm.predict(X)
+
+# Graficar los resultados
+plt.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap='viridis')
+plt.title('Clustering con GMM y EM')
+plt.show()

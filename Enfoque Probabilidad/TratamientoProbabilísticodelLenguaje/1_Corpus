@@ -1,0 +1,24 @@
+import nltk
+from nltk.util import ngrams
+from collections import Counter, defaultdict
+
+# Descargar el corpus de ejemplo de NLTK
+nltk.download('reuters')
+from nltk.corpus import reuters
+
+# Preprocesar el corpus
+corpus = reuters.sents()
+words = [word.lower() for sent in corpus for word in sent]
+
+# Calcular la frecuencia de unigramas y bigramas
+unigram_freq = Counter(words)
+bigram_freq = Counter(ngrams(words, 2))
+
+# Calcular la probabilidad de un bigrama
+def bigram_probability(word1, word2):
+    return bigram_freq[(word1, word2)] / unigram_freq[word1]
+
+# Ejemplo de uso
+word1, word2 = 'the', 'economy'
+prob = bigram_probability(word1, word2)
+print(f"Probabilidad del bigrama ('{word1}', '{word2}'): {prob}")

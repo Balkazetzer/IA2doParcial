@@ -1,0 +1,28 @@
+import nltk
+from nltk import Tree
+
+# Definir una gramática lexicalizada simple
+grammar = nltk.CFG.fromstring("""
+    S -> NP VP
+    NP -> 'John' | 'Mary' | 'Bob'
+    VP -> V NP | V NP PP
+    V -> 'saw' | 'ate'
+    PP -> P NP
+    P -> 'with' | 'under'
+""")
+
+# Crear un árbol de análisis sintáctico
+tree = Tree.fromstring("(S (NP John) (VP (V saw) (NP Mary)))")
+
+# Calcular la probabilidad del árbol
+def tree_probability(tree, grammar):
+    if tree.height() == 2:  # Si es una hoja
+        return 1.0
+    productions = grammar.productions(lhs=tree.label())
+    prob = sum(prod.prob() for prod in productions if prod.rhs() == tuple(child.label() for child in tree))
+    for child in tree:
+        prob *= tree_probability(child, grammar)
+    return prob
+
+prob = tree_probability(tree, grammar)
+print(f"Probabilidad del árbol de análisis: {prob}")

@@ -1,0 +1,19 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Cargar una imagen de ejemplo
+image = cv2.imread('ruta/a/tu/imagen.jpg')
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Detectar objetos utilizando el detector de esquinas de Harris
+corners = cv2.cornerHarris(gray, 2, 3, 0.04)
+corners = cv2.dilate(corners, None)
+
+# Resaltar las esquinas detectadas
+image[corners > 0.01 * corners.max()] = [0, 0, 255]
+
+# Mostrar la imagen con las esquinas resaltadas
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title('Reconocimiento de Objetos')
+plt.show()

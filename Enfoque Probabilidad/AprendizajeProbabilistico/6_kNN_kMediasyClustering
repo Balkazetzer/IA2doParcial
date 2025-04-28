@@ -1,0 +1,30 @@
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.cluster import KMeans
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+
+# Cargar el conjunto de datos Iris
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# k-NN
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+y_pred_knn = knn.predict(X_test)
+accuracy_knn = accuracy_score(y_test, y_pred_knn)
+print(f"Precisión del modelo k-NN: {accuracy_knn}")
+
+# k-Medias
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(X)
+labels = kmeans.predict(X)
+
+# Graficar los resultados de k-Medias
+plt.scatter(X[:, 0], X[:, 1], c=labels, s=40, cmap='viridis')
+plt.title('Clustering con K-Means')
+plt.show()

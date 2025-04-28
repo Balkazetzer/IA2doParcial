@@ -1,0 +1,25 @@
+# Este es un ejemplo ficticio, ya que la interacción con hardware real requiere bibliotecas específicas y hardware físico.
+
+class Sensor:
+    def read(self):
+        # Simular la lectura de un sensor
+        return 25.0  # Temperatura en grados Celsius
+
+class Actuator:
+    def actuate(self, value):
+        # Simular la activación de un actuador
+        print(f"Actuador activado con valor: {value}")
+
+# Crear instancias de sensor y actuador
+sensor = Sensor()
+actuator = Actuator()
+
+# Leer el valor del sensor
+temperature = sensor.read()
+print(f"Temperatura leída: {temperature}°C")
+
+# Activar el actuador basado en la lectura del sensor
+if temperature > 30:
+    actuator.actuate(1)  # Encender el ventilador
+else:
+    actuator.actuate(0)  # Apagar el ventilador

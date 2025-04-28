@@ -1,0 +1,19 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definir el espacio de configuración
+x_min, x_max = 0, 10
+y_min, y_max = 0, 10
+
+# Generar configuraciones aleatorias
+num_configs = 100
+configs = np.random.rand(num_configs, 2)
+configs[:, 0] = configs[:, 0] * (x_max - x_min) + x_min
+configs[:, 1] = configs[:, 1] * (y_max - y_min) + y_min
+
+# Graficar el espacio de configuración
+plt.scatter(configs[:, 0], configs[:, 1], s=10, alpha=0.5)
+plt.xlim(x_min, x_max)
+plt.ylim(y_min, y_max)
+plt.title('Espacio de Configuración')
+plt.show()

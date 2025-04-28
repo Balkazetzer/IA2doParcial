@@ -1,0 +1,30 @@
+import socket
+import time
+
+def talker():
+    # Configuración del servidor
+    host = '127.0.0.1'  # Dirección local
+    port = 65432         # Puerto arbitrario
+
+    # Crear un socket TCP/IP
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind((host, port))
+    server_socket.listen(1)
+    print(f"Servidor escuchando en {host}:{port}")
+
+    # Esperar a que un cliente se conecte
+    conn, addr = server_socket.accept()
+    with conn:
+        print(f"Conexión desde {addr}")
+        while True:
+            # Enviar mensaje
+            message = f"hello world {time.time()}"
+            conn.sendall(message.encode())
+            print(f"Mensaje enviado: {message}")
+            time.sleep(1)  # Esperar 1 segundo antes de enviar el siguiente mensaje
+
+if __name__ == '__main__':
+    try:
+        talker()
+    except KeyboardInterrupt:
+        print("Servidor detenido.")

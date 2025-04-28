@@ -1,0 +1,59 @@
+import numpy as np
+
+# Definir la red de Boltzmann
+class BoltzmannMachine:
+    def __init__(self, num_visible, num_hidden, learning_rate=0.1):
+        self.num_visible = num_visible
+        self.num_hidden = num_hidden
+        self.learning_rate = learning_rate
+        self.weights = np.random.randn(num_visible, num_hidden) * 0.1
+        self.hidden_bias = np.zeros(num_hidden)
+        self.visible_bias = np.zeros(num_visible)
+
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
+    def train(self, data, num_epochs=1000):
+        num_samples = data.shape[0]
+        for epoch in range(num_epochs):
+            pos_hidden_activations = np.dot(data, self.weights) + self.hidden_bias
+            pos_hidden_probs = self.sigmoid(pos_hidden_activations)
+            pos_hidden_states = pos_hidden_probs > np.random.rand(num_samples, self.num_hidden)
+            pos_associations = np.dot(data.T, pos_hidden_probs)
+
+            neg_visible_activations = np.dot(pos_hidden_states, self.weights.T) + self.visible_bias
+            neg_visible_probs = self.sigmoid(neg_visible_activations)
+            neg_hidden_activations = np.dot(neg_visible_probs, self.weights) + self.hidden_bias
+            neg_hidden_probs = self.sigmoid(neg_hidden_activations)
+
+            neg_associations = np.dot(neg_visible_probs.T, neg_hidden_probs)
+
+            self.weights += self.learning_rate * ((pos_associations - neg_associations) / num_samples)
+            self.visible_bias += self.learning_rate * np.mean(data - neg_visible_probs, axis=0)
+            self.hidden_bias += self.learning_rate * np.mean(pos_hidden_probs - neg_hidden_probs, axis=0)
+
+    def run_visible(self, data):
+        hidden_activations = np.dot(data, self.weights) + self.hidden_bias
+        hidden_probs = self.sigmoid(hidden_activations)
+        return hidden_probs > np.random.rand(data.shape[0], self.num_hidden)
+
+    def run_hidden(self, data):
+        visible_activations = np.dot(data, self.weights.T) + self.visible_bias
+        visible_probs = self.sigmoid(visible_activations)
+        return visible_probs > np.random.rand(data.shape[0], self.num_visible)
+
+    def reconstruct(self, data):
+        hidden_states = self.run_visible(data)
+        reconstructed_visible_probs = self.run_hidden(hidden_states)
+        return reconstructed_visible_probs
+
+# Ejemplo de uso
+data = np.array([[1, 1, 0, 0], [0, 0, 1, 1], [1, 0, 1, 0], [0, 1, 0, 1]])
+bm = BoltzmannMachine(num_visible=4, num_hidden=2)
+bm.train(data, num_epochs=1000)
+
+test_data = np.array([[1, 0, 0, 0]])
+reconstructed_data = bm.reconstruct(test_data)
+
+print(f"Datos reconstruidos: {reconstructed_data}")
+

@@ -1,0 +1,20 @@
+import numpy as np
+
+# Definir una función de activación sigmoide
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Definir una neurona simple
+def neuron(inputs, weights, bias):
+    # Calcular la suma ponderada de las entradas
+    z = np.dot(inputs, weights) + bias
+    # Aplicar la función de activación
+    return sigmoid(z)
+
+# Ejemplo de uso
+inputs = np.array([1, 2, 3])
+weights = np.array([0.2, 0.8, -0.5])
+bias = 0.5
+
+output = neuron(inputs, weights, bias)
+print(f"Salida de la neurona: {output}")
