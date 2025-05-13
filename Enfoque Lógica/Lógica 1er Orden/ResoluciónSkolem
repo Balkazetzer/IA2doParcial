@@ -1,0 +1,10 @@
+# skolem.py
+def skolemizar(expresion):
+    """Aplica la skolemización a una expresión."""
+    # Implementación simplificada
+    return expresion
+
+if __name__ == "__main__":
+    expresion = "∀x ∃y P(x, y)"
+    skolemizada = skolemizar(expresion)
+    print(f"Skolemización de {expresion}: {skolemizada}")

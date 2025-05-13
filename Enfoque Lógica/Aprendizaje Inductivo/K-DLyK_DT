@@ -1,0 +1,20 @@
+# listas_decision.py
+class ListaDecision:
+    """Clase para representar una lista de decisión."""
+    def __init__(self):
+        self.reglas = []
+
+    def agregar_regla(self, regla):
+        """Agrega una regla a la lista de decisión."""
+        self.reglas.append(regla)
+
+    def predecir(self, ejemplo):
+        """Predice usando la lista de decisión."""
+        # Implementación simplificada
+        return "predicción"
+
+if __name__ == "__main__":
+    ld = ListaDecision()
+    ld.agregar_regla({"condicion": "condicion1", "accion": "accion1"})
+    prediccion = ld.predecir({"atributo1": "valor1"})
+    print(f"Predicción: {prediccion}")

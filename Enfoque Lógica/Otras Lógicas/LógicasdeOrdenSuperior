@@ -1,0 +1,11 @@
+# logica_orden_superior.py
+def aplicar_funcion(funcion, argumento):
+    """Aplica una función de orden superior a un argumento."""
+    return funcion(argumento)
+
+if __name__ == "__main__":
+    def cuadrado(x):
+        return x * x
+
+    resultado = aplicar_funcion(cuadrado, 5)
+    print(f"Resultado: {resultado}")

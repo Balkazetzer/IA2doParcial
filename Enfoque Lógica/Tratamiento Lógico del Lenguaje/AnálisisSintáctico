@@ -1,0 +1,16 @@
+# analisis_sintactico.py
+class AnalizadorSintactico:
+    """Clase para representar un analizador sintáctico."""
+    def __init__(self):
+        self.arbol_sintactico = {}
+
+    def analizar(self, tokens):
+        """Analiza los tokens y devuelve el árbol sintáctico."""
+        # Implementación simplificada
+        self.arbol_sintactico = {"raiz": "oracion", "hojas": tokens}
+        return self.arbol_sintactico
+
+if __name__ == "__main__":
+    asint = AnalizadorSintactico()
+    arbol = asint.analizar(["Este", "es", "un", "ejemplo"])
+    print(f"Árbol sintáctico: {arbol}")

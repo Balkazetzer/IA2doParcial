@@ -1,0 +1,19 @@
+# explicaciones_informacion_relevante.py
+class ExplicacionesInformacionRelevante:
+    """Clase para representar explicaciones e información relevante."""
+    def __init__(self):
+        self.explicaciones = []
+
+    def agregar_explicacion(self, explicacion):
+        """Agrega una explicación a la lista."""
+        self.explicaciones.append(explicacion)
+
+    def obtener_explicaciones(self):
+        """Obtiene las explicaciones."""
+        return self.explicaciones
+
+if __name__ == "__main__":
+    eir = ExplicacionesInformacionRelevante()
+    eir.agregar_explicacion("explicación1")
+    explicaciones = eir.obtener_explicaciones()
+    print(f"Explicaciones: {explicaciones}")

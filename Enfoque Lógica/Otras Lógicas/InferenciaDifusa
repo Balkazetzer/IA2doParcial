@@ -1,0 +1,25 @@
+# inferencia_difusa.py
+class SistemaInferenciaDifusa:
+    """Sistema de inferencia difusa."""
+    def __init__(self):
+        self.reglas = []
+
+    def agregar_regla(self, antecedente, consecuente):
+        """Agrega una regla difusa al sistema."""
+        self.reglas.append((antecedente, consecuente))
+
+    def inferir(self, entrada):
+        """Realiza inferencia difusa."""
+        resultados = []
+        for antecedente, consecuente in self.reglas:
+            grado = min(entrada[antecedente] for antecedente in antecedente)
+            resultados.append((consecuente, grado))
+        return resultados
+
+if __name__ == "__main__":
+    sid = SistemaInferenciaDifusa()
+    sid.agregar_regla(["joven"], "bajo_riesgo")
+    sid.agregar_regla(["adulto"], "medio_riesgo")
+    entrada = {"joven": 0.8, "adulto": 0.5}
+    resultados = sid.inferir(entrada)
+    print("Resultados de inferencia difusa:", resultados)

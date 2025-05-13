@@ -1,0 +1,20 @@
+# gramatica_causal_definida.py
+class GramaticaCausalDefinida:
+    """Clase para representar una gramática causal definida."""
+    def __init__(self):
+        self.reglas = []
+
+    def agregar_regla(self, regla):
+        """Agrega una regla a la gramática."""
+        self.reglas.append(regla)
+
+    def generar(self):
+        """Genera una oración usando la gramática."""
+        # Implementación simplificada
+        return "oración generada"
+
+if __name__ == "__main__":
+    gcd = GramaticaCausalDefinida()
+    gcd.agregar_regla({"causa": "A", "efecto": "B"})
+    oracion = gcd.generar()
+    print(f"Oración generada: {oracion}")

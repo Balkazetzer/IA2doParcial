@@ -1,0 +1,19 @@
+# espacio_versiones_aq.py
+class EspacioVersionesAQ:
+    """Clase para representar un espacio de versiones usando AQ."""
+    def __init__(self):
+        self.versiones = []
+
+    def agregar_version(self, version):
+        """Agrega una versión al espacio de versiones."""
+        self.versiones.append(version)
+
+    def obtener_versiones(self):
+        """Obtiene las versiones del espacio."""
+        return self.versiones
+
+if __name__ == "__main__":
+    evaq = EspacioVersionesAQ()
+    evaq.agregar_version("versión1")
+    versiones = evaq.obtener_versiones()
+    print(f"Versiones: {versiones}")

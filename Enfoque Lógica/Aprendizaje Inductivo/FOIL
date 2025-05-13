@@ -1,0 +1,20 @@
+# foil.py
+class FOIL:
+    """Clase para representar la programación lógica inductiva usando FOIL."""
+    def __init__(self):
+        self.reglas = []
+
+    def agregar_regla(self, regla):
+        """Agrega una regla al conjunto."""
+        self.reglas.append(regla)
+
+    def aprender_reglas(self, ejemplos):
+        """Aprende reglas usando FOIL."""
+        # Implementación simplificada
+        self.reglas = [{"regla": "regla1"}]
+
+if __name__ == "__main__":
+    f = FOIL()
+    f.aprender_reglas([{"ejemplo": "ejemplo1"}])
+    reglas = f.reglas
+    print(f"Reglas aprendidas: {reglas}")

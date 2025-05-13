@@ -1,0 +1,14 @@
+# tablas_verdad.py
+def tabla_verdad(p, q):
+    """Genera una tabla de verdad para dos proposiciones p y q."""
+    print("p\tq\tp ∧ q\tp ∨ q\tp → q\tp ↔ q")
+    for p_val in [True, False]:
+        for q_val in [True, False]:
+            conjuncion = p_val and q_val
+            disyuncion = p_val or q_val
+            implicacion = (not p_val) or q_val
+            equivalencia = p_val == q_val
+            print(f"{int(p_val)}\t{int(q_val)}\t{int(conjuncion)}\t{int(disyuncion)}\t{int(implicacion)}\t{int(equivalencia)}")
+
+if __name__ == "__main__":
+    tabla_verdad("p", "q")

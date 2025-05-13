@@ -1,0 +1,34 @@
+# sistemas_expertos.py
+class SistemaExperto:
+    """Clase para representar un sistema experto."""
+    def __init__(self):
+        self.base_conocimiento = {}
+        self.hechos = set()
+
+    def agregar_regla(self, antecedente, consecuente):
+        """Agrega una regla al sistema experto."""
+        self.base_conocimiento[antecedente] = consecuente
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho al sistema experto."""
+        self.hechos.add(hecho)
+
+    def inferir(self):
+        """Realiza inferencia basada en las reglas y hechos."""
+        nuevos_hechos = True
+        while nuevos_hechos:
+            nuevos_hechos = False
+            for antecedente, consecuente in self.base_conocimiento.items():
+                if antecedente in self.hechos and consecuente not in self.hechos:
+                    self.hechos.add(consecuente)
+                    nuevos_hechos = True
+                    print(f"Se infirió {consecuente} a partir de {antecedente}")
+        return self.hechos
+
+if __name__ == "__main__":
+    se = SistemaExperto()
+    se.agregar_regla("A", "B")
+    se.agregar_regla("B", "C")
+    se.agregar_hecho("A")
+    hechos_inferidos = se.inferir()
+    print("Hechos inferidos:", hechos_inferidos)

@@ -1,0 +1,32 @@
+# encadenamiento_avanzado.py
+class SistemaEncadenamientoAvanzado:
+    """Sistema de encadenamiento hacia adelante y hacia atrás avanzado."""
+    def __init__(self):
+        self.hechos = set()
+        self.reglas = {}
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho al sistema."""
+        self.hechos.add(hecho)
+
+    def agregar_regla(self, antecedentes, consecuente):
+        """Agrega una regla al sistema."""
+        self.reglas[consecuente] = antecedentes
+
+    def encadenamiento_hacia_atras(self, objetivo):
+        """Realiza encadenamiento hacia atrás."""
+        if objetivo in self.hechos:
+            return True
+        if objetivo in self.reglas:
+            for antecedente in self.reglas[objetivo]:
+                if not self.encadenamiento_hacia_atras(antecedente):
+                    return False
+            return True
+        return False
+
+if __name__ == "__main__":
+    sea = SistemaEncadenamientoAvanzado()
+    sea.agregar_hecho("A")
+    sea.agregar_regla(["A", "B"], "C")
+    sea.agregar_regla(["C"], "D")
+    print("¿Se puede inferir D?", sea.encadenamiento_hacia_atras("D"))

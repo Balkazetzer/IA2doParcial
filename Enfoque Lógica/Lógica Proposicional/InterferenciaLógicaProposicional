@@ -1,0 +1,12 @@
+# inferencia_logica.py
+def modus_ponens(p, p_implica_q):
+    """Aplica el modus ponens: Si p y p → q, entonces q."""
+    if p and p_implica_q:
+        return True
+    return False
+
+if __name__ == "__main__":
+    p = True
+    p_implica_q = True
+    q = modus_ponens(p, p_implica_q)
+    print(f"Si p es {p} y p → q es {p_implica_q}, entonces q es {q}")

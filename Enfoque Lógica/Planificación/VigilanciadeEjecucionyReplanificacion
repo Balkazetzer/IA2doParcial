@@ -1,0 +1,39 @@
+# vigilancia_replanificacion.py
+class VigilanciaReplanificacion:
+    """Clase para representar un sistema de vigilancia de ejecución y replanificación."""
+    def __init__(self):
+        self.plan = []
+        self.estado_actual = set()
+
+    def agregar_accion_plan(self, accion):
+        """Agrega una acción al plan."""
+        self.plan.append(accion)
+
+    def ejecutar_plan(self):
+        """Ejecuta el plan y realiza replanificación si es necesario."""
+        for accion in self.plan:
+            if self.verificar_precondiciones(accion):
+                self.ejecutar_accion(accion)
+            else:
+                self.replanificar()
+                break
+
+    def verificar_precondiciones(self, accion):
+        """Verifica las precondiciones de una acción."""
+        return all(pre in self.estado_actual for pre in accion["precondiciones"])
+
+    def ejecutar_accion(self, accion):
+        """Ejecuta una acción."""
+        self.estado_actual.update(accion["efectos"])
+        print(f"Acción ejecutada: {accion}")
+
+    def replanificar(self):
+        """Realiza replanificación."""
+        print("Replanificando...")
+        # Implementación simplificada
+        self.plan = [{"precondiciones": ["A"], "efectos": ["B"]}]
+
+if __name__ == "__main__":
+    vr = VigilanciaReplanificacion()
+    vr.agregar_accion_plan({"precondiciones": ["A"], "efectos": ["B"]})
+    vr.ejecutar_plan()

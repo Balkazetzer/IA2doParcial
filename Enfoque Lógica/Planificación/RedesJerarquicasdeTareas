@@ -1,0 +1,19 @@
+# redes_jerarquicas_tareas.py
+class RedJerarquicaTareas:
+    """Clase para representar una red jerárquica de tareas."""
+    def __init__(self):
+        self.tareas = {}
+
+    def agregar_tarea(self, tarea, subtareas):
+        """Agrega una tarea y sus subtareas a la red."""
+        self.tareas[tarea] = subtareas
+
+    def descomponer_tarea(self, tarea):
+        """Descompone una tarea en sus subtareas."""
+        return self.tareas.get(tarea, [])
+
+if __name__ == "__main__":
+    rjt = RedJerarquicaTareas()
+    rjt.agregar_tarea("Tarea1", ["Subtarea1", "Subtarea2"])
+    subtareas = rjt.descomponer_tarea("Tarea1")
+    print(f"Subtareas de Tarea1: {subtareas}")

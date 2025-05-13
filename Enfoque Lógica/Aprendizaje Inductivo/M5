@@ -1,0 +1,24 @@
+# arboles_regresion_m5.py
+class ArbolRegresionM5:
+    """Clase para representar un árbol de regresión usando M5."""
+    def __init__(self):
+        self.arbol = {}
+
+    def entrenar(self, datos, atributos, objetivo):
+        """Entrena el árbol de regresión usando M5."""
+        # Implementación simplificada
+        self.arbol = {"atributo": atributos[0], "valor": 0.0}
+
+    def predecir(self, ejemplo):
+        """Predice usando el árbol de regresión."""
+        # Implementación simplificada
+        return 0.0
+
+if __name__ == "__main__":
+    arm5 = ArbolRegresionM5()
+    datos = [{"atributo1": 1.0, "objetivo": 2.0}]
+    atributos = ["atributo1"]
+    objetivo = "objetivo"
+    arm5.entrenar(datos, atributos, objetivo)
+    prediccion = arm5.predecir({"atributo1": 1.0})
+    print(f"Predicción: {prediccion}")

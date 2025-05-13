@@ -1,0 +1,23 @@
+# busqueda_local.py
+def hill_climbing(funcion_objetivo, vecindario):
+    """Algoritmo de hill climbing."""
+    actual = vecindario[0]
+    while True:
+        mejor_vecino = None
+        mejor_valor = funcion_objetivo(actual)
+        for vecino in vecindario:
+            valor = funcion_objetivo(vecino)
+            if valor > mejor_valor:
+                mejor_valor = valor
+                mejor_vecino = vecino
+        if mejor_vecino is None:
+            return actual
+        actual = mejor_vecino
+
+if __name__ == "__main__":
+    def funcion_objetivo(x):
+        return -x**2
+
+    vecindario = list(range(-10, 11))
+    solucion = hill_climbing(funcion_objetivo, vecindario)
+    print(f"Solución encontrada: {solucion}")

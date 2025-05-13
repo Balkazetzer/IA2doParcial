@@ -1,0 +1,24 @@
+# espacio_estados.py
+class EspacioEstados:
+    """Clase para representar un espacio de estados."""
+    def __init__(self):
+        self.estados = set()
+        self.transiciones = {}
+
+    def agregar_estado(self, estado):
+        """Agrega un estado al espacio de estados."""
+        self.estados.add(estado)
+
+    def agregar_transicion(self, estado1, accion, estado2):
+        """Agrega una transición entre dos estados."""
+        if estado1 not in self.transiciones:
+            self.transiciones[estado1] = {}
+        self.transiciones[estado1][accion] = estado2
+
+if __name__ == "__main__":
+    ee = EspacioEstados()
+    ee.agregar_estado("A")
+    ee.agregar_estado("B")
+    ee.agregar_transicion("A", "accion1", "B")
+    print("Estados:", ee.estados)
+    print("Transiciones:", ee.transiciones)

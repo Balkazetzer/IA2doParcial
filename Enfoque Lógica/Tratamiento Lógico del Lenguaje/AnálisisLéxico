@@ -1,0 +1,16 @@
+# analisis_lexico.py
+class AnalizadorLexico:
+    """Clase para representar un analizador léxico."""
+    def __init__(self):
+        self.tokens = []
+
+    def analizar(self, texto):
+        """Analiza un texto y devuelve los tokens."""
+        # Implementación simplificada
+        self.tokens = texto.split()
+        return self.tokens
+
+if __name__ == "__main__":
+    al = AnalizadorLexico()
+    tokens = al.analizar("Este es un ejemplo de texto")
+    print(f"Tokens: {tokens}")

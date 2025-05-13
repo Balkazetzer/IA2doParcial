@@ -1,0 +1,22 @@
+# strips_adl.py
+class PlanificadorSTRIPS:
+    """Clase para representar un planificador STRIPS."""
+    def __init__(self):
+        self.estado_inicial = set()
+        self.estado_objetivo = set()
+        self.acciones = []
+
+    def agregar_accion(self, accion):
+        """Agrega una acción al planificador."""
+        self.acciones.append(accion)
+
+    def planificar(self):
+        """Realiza la planificación."""
+        # Implementación simplificada
+        return "Plan encontrado"
+
+if __name__ == "__main__":
+    ps = PlanificadorSTRIPS()
+    ps.agregar_accion({"precondiciones": ["A"], "efectos": ["B"]})
+    plan = ps.planificar()
+    print(f"Plan: {plan}")

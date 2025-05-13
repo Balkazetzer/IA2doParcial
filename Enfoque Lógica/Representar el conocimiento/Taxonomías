@@ -1,0 +1,23 @@
+# taxonomias.py
+class Taxonomia:
+    """Clase para representar una taxonomía."""
+    def __init__(self):
+        self.categorias = set()
+        self.objetos = {}
+
+    def agregar_categoria(self, categoria):
+        """Agrega una categoría a la taxonomía."""
+        self.categorias.add(categoria)
+
+    def agregar_objeto(self, objeto, categoria):
+        """Agrega un objeto a una categoría."""
+        if categoria not in self.objetos:
+            self.objetos[categoria] = set()
+        self.objetos[categoria].add(objeto)
+
+if __name__ == "__main__":
+    taxonomia = Taxonomia()
+    taxonomia.agregar_categoria("Animal")
+    taxonomia.agregar_objeto("Perro", "Animal")
+    print("Categorías en la taxonomía:", taxonomia.categorias)
+    print("Objetos en la taxonomía:", taxonomia.objetos)

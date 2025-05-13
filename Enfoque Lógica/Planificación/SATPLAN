@@ -1,0 +1,20 @@
+# satplan.py
+class SATPlan:
+    """Clase para representar un planificador SATPLAN."""
+    def __init__(self):
+        self.clausulas = []
+
+    def agregar_clausula(self, clausula):
+        """Agrega una cláusula al planificador."""
+        self.clausulas.append(clausula)
+
+    def planificar(self):
+        """Realiza la planificación usando SATPLAN."""
+        # Implementación simplificada
+        return "Plan encontrado usando SATPLAN"
+
+if __name__ == "__main__":
+    sp = SATPlan()
+    sp.agregar_clausula(["A", "B"])
+    plan = sp.planificar()
+    print(f"Plan usando SATPLAN: {plan}")

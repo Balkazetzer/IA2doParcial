@@ -1,0 +1,20 @@
+# incertidumbre.py
+class SistemaIncertidumbre:
+    """Sistema para manejar incertidumbre con factores de certeza."""
+    def __init__(self):
+        self.hechos = {}
+
+    def agregar_hecho(self, hecho, factor_certeza):
+        """Agrega un hecho con un factor de certeza."""
+        self.hechos[hecho] = factor_certeza
+
+    def combinar_factores(self, factor1, factor2):
+        """Combina dos factores de certeza."""
+        return factor1 + factor2 * (1 - factor1)
+
+if __name__ == "__main__":
+    si = SistemaIncertidumbre()
+    si.agregar_hecho("A", 0.8)
+    si.agregar_hecho("B", 0.6)
+    factor_combinado = si.combinar_factores(si.hechos["A"], si.hechos["B"])
+    print(f"Factor de certeza combinado: {factor_combinado}")

@@ -1,0 +1,15 @@
+# logica_modal.py
+class MundoPosible:
+    """Clase para representar un mundo posible en lógica modal."""
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.hechos = set()
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho a este mundo posible."""
+        self.hechos.add(hecho)
+
+if __name__ == "__main__":
+    mundo1 = MundoPosible("Mundo1")
+    mundo1.agregar_hecho("llueve")
+    print(f"Hechos en {mundo1.nombre}: {mundo1.hechos}")

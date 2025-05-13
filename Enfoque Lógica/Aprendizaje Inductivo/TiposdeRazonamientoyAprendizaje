@@ -1,0 +1,14 @@
+# tipos_razonamiento_aprendizaje.py
+class TiposRazonamientoAprendizaje:
+    """Clase para representar tipos de razonamiento y aprendizaje."""
+    def __init__(self):
+        self.tipos = ["deductivo", "inductivo", "abductivo", "analógico"]
+
+    def listar_tipos(self):
+        """Lista los tipos de razonamiento y aprendizaje."""
+        return self.tipos
+
+if __name__ == "__main__":
+    tra = TiposRazonamientoAprendizaje()
+    tipos = tra.listar_tipos()
+    print("Tipos de razonamiento y aprendizaje:", tipos)

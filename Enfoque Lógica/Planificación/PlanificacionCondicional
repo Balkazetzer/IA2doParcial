@@ -1,0 +1,20 @@
+# planificacion_condicional.py
+class PlanificadorCondicional:
+    """Clase para representar un planificador condicional."""
+    def __init__(self):
+        self.acciones = []
+
+    def agregar_accion(self, accion):
+        """Agrega una acción al planificador."""
+        self.acciones.append(accion)
+
+    def planificar(self):
+        """Realiza la planificación condicional."""
+        # Implementación simplificada
+        return "Plan condicional encontrado"
+
+if __name__ == "__main__":
+    pc = PlanificadorCondicional()
+    pc.agregar_accion({"precondiciones": ["A"], "efectos": ["B"]})
+    plan = pc.planificar()
+    print(f"Plan condicional: {plan}")

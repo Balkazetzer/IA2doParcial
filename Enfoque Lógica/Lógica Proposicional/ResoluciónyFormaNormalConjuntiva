@@ -1,0 +1,10 @@
+# resolucion_fnc.py
+def a_fnc(expresion):
+    """Convierte una expresión a forma normal conjuntiva."""
+    # Implementación simplificada
+    return expresion
+
+if __name__ == "__main__":
+    expresion = "(p or q) and (not p or r)"
+    fnc = a_fnc(expresion)
+    print(f"FNC de {expresion}: {fnc}")

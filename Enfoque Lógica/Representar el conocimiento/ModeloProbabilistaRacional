@@ -1,0 +1,20 @@
+# modelo_probabilista.py
+class ModeloProbabilista:
+    """Clase para representar un modelo probabilista racional."""
+    def __init__(self):
+        self.probabilidades = {}
+
+    def agregar_probabilidad(self, evento, probabilidad):
+        """Agrega una probabilidad a un evento."""
+        self.probabilidades[evento] = probabilidad
+
+    def probabilidad_conjunta(self, evento1, evento2):
+        """Calcula la probabilidad conjunta de dos eventos."""
+        return self.probabilidades[evento1] * self.probabilidades[evento2]
+
+if __name__ == "__main__":
+    mp = ModeloProbabilista()
+    mp.agregar_probabilidad("A", 0.5)
+    mp.agregar_probabilidad("B", 0.3)
+    prob_conjunta = mp.probabilidad_conjunta("A", "B")
+    print(f"Probabilidad conjunta de A y B: {prob_conjunta}")

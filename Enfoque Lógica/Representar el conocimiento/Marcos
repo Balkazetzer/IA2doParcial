@@ -1,0 +1,16 @@
+# marcos.py
+class Marco:
+    """Clase para representar un marco."""
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.slots = {}
+
+    def agregar_slot(self, nombre, valor):
+        """Agrega un slot al marco."""
+        self.slots[nombre] = valor
+
+if __name__ == "__main__":
+    marco = Marco("Persona")
+    marco.agregar_slot("nombre", "Juan")
+    marco.agregar_slot("edad", 30)
+    print(f"Marco {marco.nombre}: {marco.slots}")

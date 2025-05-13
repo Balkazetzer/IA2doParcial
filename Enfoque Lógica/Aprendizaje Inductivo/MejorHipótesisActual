@@ -1,0 +1,19 @@
+# mejor_hipotesis_actual.py
+class MejorHipotesisActual:
+    """Clase para representar la mejor hipótesis actual."""
+    def __init__(self):
+        self.hipotesis = None
+
+    def actualizar_hipotesis(self, nueva_hipotesis):
+        """Actualiza la mejor hipótesis actual."""
+        self.hipotesis = nueva_hipotesis
+
+    def obtener_hipotesis(self):
+        """Obtiene la mejor hipótesis actual."""
+        return self.hipotesis
+
+if __name__ == "__main__":
+    mha = MejorHipotesisActual()
+    mha.actualizar_hipotesis("hipotesis1")
+    hipotesis = mha.obtener_hipotesis()
+    print(f"Mejor hipótesis actual: {hipotesis}")

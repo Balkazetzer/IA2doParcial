@@ -1,0 +1,21 @@
+# induccion_gramatical.py
+class InduccionGramatical:
+    """Clase para representar la inducción gramatical."""
+    def __init__(self):
+        self.gramatica = {}
+
+    def aprender_gramatica(self, ejemplos):
+        """Aprende una gramática a partir de ejemplos."""
+        # Implementación simplificada
+        self.gramatica = {"regla": "regla1"}
+
+    def generar(self):
+        """Genera una oración usando la gramática aprendida."""
+        # Implementación simplificada
+        return "oración generada"
+
+if __name__ == "__main__":
+    ig = InduccionGramatical()
+    ig.aprender_gramatica([{"ejemplo": "ejemplo1"}])
+    oracion = ig.generar()
+    print(f"Oración generada: {oracion}")

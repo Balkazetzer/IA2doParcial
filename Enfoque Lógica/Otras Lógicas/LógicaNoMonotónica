@@ -1,0 +1,28 @@
+# logica_no_monotonica.py
+class SistemaNoMonotonico:
+    """Sistema de lógica no monotónica."""
+    def __init__(self):
+        self.hechos = set()
+        self.reglas = {}
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho al sistema."""
+        self.hechos.add(hecho)
+
+    def agregar_regla(self, regla):
+        """Agrega una regla al sistema."""
+        self.reglas[regla] = True
+
+    def revisar(self, nuevo_hecho):
+        """Revisa el sistema con un nuevo hecho."""
+        self.hechos.add(nuevo_hecho)
+        # Implementación simplificada
+        return self.hechos
+
+if __name__ == "__main__":
+    snm = SistemaNoMonotonico()
+    snm.agregar_hecho("A")
+    snm.agregar_regla("A → B")
+    print("Hechos iniciales:", snm.hechos)
+    snm.revisar("¬A")
+    print("Hechos después de revisión:", snm.hechos)

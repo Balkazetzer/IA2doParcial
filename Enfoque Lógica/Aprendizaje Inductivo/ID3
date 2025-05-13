@@ -1,0 +1,24 @@
+# arboles_decision_id3.py
+class ArbolDecisionID3:
+    """Clase para representar un árbol de decisión usando ID3."""
+    def __init__(self):
+        self.arbol = {}
+
+    def entrenar(self, datos, atributos, objetivo):
+        """Entrena el árbol de decisión usando ID3."""
+        # Implementación simplificada
+        self.arbol = {"atributo": atributos[0], "valor": "ejemplo"}
+
+    def predecir(self, ejemplo):
+        """Predice usando el árbol de decisión."""
+        # Implementación simplificada
+        return "predicción"
+
+if __name__ == "__main__":
+    ad = ArbolDecisionID3()
+    datos = [{"atributo1": "valor1", "objetivo": "clase1"}]
+    atributos = ["atributo1"]
+    objetivo = "objetivo"
+    ad.entrenar(datos, atributos, objetivo)
+    prediccion = ad.predecir({"atributo1": "valor1"})
+    print(f"Predicción: {prediccion}")

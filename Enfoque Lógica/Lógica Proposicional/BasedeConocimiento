@@ -1,0 +1,25 @@
+# base_conocimiento.py
+class BaseConocimiento:
+    """Clase para representar una base de conocimiento."""
+    def __init__(self):
+        self.hechos = set()
+        self.reglas = []
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho a la base de conocimiento."""
+        self.hechos.add(hecho)
+
+    def agregar_regla(self, regla):
+        """Agrega una regla a la base de conocimiento."""
+        self.reglas.append(regla)
+
+    def consultar(self, hecho):
+        """Consulta si un hecho está en la base de conocimiento."""
+        return hecho in self.hechos
+
+if __name__ == "__main__":
+    bc = BaseConocimiento()
+    bc.agregar_hecho("llueve")
+    bc.agregar_hecho("hace_frio")
+    print("¿Llueve?", bc.consultar("llueve"))
+    print("¿Hace calor?", bc.consultar("hace_calor"))

@@ -1,0 +1,14 @@
+# jerarquia_chomsky.py
+class JerarquiaChomsky:
+    """Clase para representar la jerarquía de Chomsky."""
+    def __init__(self):
+        self.tipos = ["Tipo 0", "Tipo 1", "Tipo 2", "Tipo 3"]
+
+    def listar_tipos(self):
+        """Lista los tipos de la jerarquía de Chomsky."""
+        return self.tipos
+
+if __name__ == "__main__":
+    jc = JerarquiaChomsky()
+    tipos = jc.listar_tipos()
+    print("Tipos de la jerarquía de Chomsky:", tipos)

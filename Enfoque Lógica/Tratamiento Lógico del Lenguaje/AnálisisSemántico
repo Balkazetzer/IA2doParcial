@@ -1,0 +1,16 @@
+# analisis_semantico.py
+class AnalizadorSemantico:
+    """Clase para representar un analizador semántico."""
+    def __init__(self):
+        self.significados = {}
+
+    def analizar(self, arbol_sintactico):
+        """Analiza el árbol sintáctico y devuelve los significados."""
+        # Implementación simplificada
+        self.significados = {"oracion": "significado de la oración"}
+        return self.significados
+
+if __name__ == "__main__":
+    asem = AnalizadorSemantico()
+    significados = asem.analizar({"raiz": "oracion", "hojas": ["Este", "es", "un", "ejemplo"]})
+    print(f"Significados: {significados}")

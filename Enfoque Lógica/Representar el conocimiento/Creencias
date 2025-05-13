@@ -1,0 +1,18 @@
+# creencias.py
+class Agente:
+    """Clase para representar un agente con creencias."""
+    def __init__(self):
+        self.creencias = set()
+
+    def agregar_creencia(self, creencia):
+        """Agrega una creencia al agente."""
+        self.creencias.add(creencia)
+
+    def tiene_creencia(self, creencia):
+        """Verifica si el agente tiene una creencia."""
+        return creencia in self.creencias
+
+if __name__ == "__main__":
+    agente = Agente()
+    agente.agregar_creencia("llueve")
+    print("¿El agente cree que llueve?", agente.tiene_creencia("llueve"))

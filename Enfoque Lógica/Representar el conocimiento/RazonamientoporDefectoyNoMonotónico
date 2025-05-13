@@ -1,0 +1,31 @@
+# razonamiento_defecto.py
+class SistemaRazonamientoDefecto:
+    """Sistema de razonamiento por defecto."""
+    def __init__(self):
+        self.hechos = set()
+        self.reglas_defecto = {}
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho al sistema."""
+        self.hechos.add(hecho)
+
+    def agregar_regla_defecto(self, regla, justificacion):
+        """Agrega una regla por defecto al sistema."""
+        self.reglas_defecto[regla] = justificacion
+
+    def aplicar_reglas_defecto(self):
+        """Aplica las reglas por defecto."""
+        nuevos_hechos = set()
+        for regla, justificacion in self.reglas_defecto.items():
+            if all(j in self.hechos for j in justificacion):
+                nuevos_hechos.add(regla)
+        self.hechos.update(nuevos_hechos)
+        return self.hechos
+
+if __name__ == "__main__":
+    srd = SistemaRazonamientoDefecto()
+    srd.agregar_hecho("A")
+    srd.agregar_regla_defecto("B", ["A"])
+    print("Hechos iniciales:", srd.hechos)
+    srd.aplicar_reglas_defecto()
+    print("Hechos después de aplicar reglas por defecto:", srd.hechos)

@@ -1,0 +1,28 @@
+# reglas_diagnostico.py
+class SistemaDiagnostico:
+    """Sistema de diagnóstico basado en reglas."""
+    def __init__(self):
+        self.reglas = {}
+
+    def agregar_regla(self, sintoma, enfermedad):
+        """Agrega una regla de diagnóstico."""
+        if sintoma not in self.reglas:
+            self.reglas[sintoma] = []
+        self.reglas[sintoma].append(enfermedad)
+
+    def diagnosticar(self, sintomas):
+        """Realiza un diagnóstico basado en los síntomas."""
+        enfermedades = set()
+        for sintoma in sintomas:
+            if sintoma in self.reglas:
+                enfermedades.update(self.reglas[sintoma])
+        return enfermedades
+
+if __name__ == "__main__":
+    sd = SistemaDiagnostico()
+    sd.agregar_regla("fiebre", "gripe")
+    sd.agregar_regla("tos", "gripe")
+    sd.agregar_regla("dolor_cabeza", "migraña")
+    sintomas = ["fiebre", "tos"]
+    diagnostico = sd.diagnosticar(sintomas)
+    print(f"Diagnóstico: {diagnostico}")

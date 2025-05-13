@@ -1,0 +1,19 @@
+# conjuntos_difusos.py
+class ConjuntoDifuso:
+    """Clase para representar un conjunto difuso."""
+    def __init__(self):
+        self.elementos = {}
+
+    def agregar_elemento(self, elemento, grado_miembro):
+        """Agrega un elemento al conjunto difuso con un grado de membresía."""
+        self.elementos[elemento] = grado_miembro
+
+    def grado_miembro(self, elemento):
+        """Devuelve el grado de membresía de un elemento."""
+        return self.elementos.get(elemento, 0)
+
+if __name__ == "__main__":
+    conjunto = ConjuntoDifuso()
+    conjunto.agregar_elemento("joven", 0.8)
+    conjunto.agregar_elemento("adulto", 0.5)
+    print(f"Grado de membresía de 'joven': {conjunto.grado_miembro('joven')}")

@@ -1,0 +1,20 @@
+# planificacion_orden_parcial.py
+class PlanificadorOrdenParcial:
+    """Clase para representar un planificador de orden parcial."""
+    def __init__(self):
+        self.acciones = []
+
+    def agregar_accion(self, accion):
+        """Agrega una acción al planificador."""
+        self.acciones.append(accion)
+
+    def planificar(self):
+        """Realiza la planificación de orden parcial."""
+        # Implementación simplificada
+        return "Plan de orden parcial encontrado"
+
+if __name__ == "__main__":
+    pop = PlanificadorOrdenParcial()
+    pop.agregar_accion({"precondiciones": ["A"], "efectos": ["B"]})
+    plan = pop.planificar()
+    print(f"Plan de orden parcial: {plan}")

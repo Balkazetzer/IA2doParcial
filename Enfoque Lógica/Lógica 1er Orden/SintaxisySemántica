@@ -1,0 +1,14 @@
+# cuantificadores.py
+def para_todo(dominio, predicado):
+    """Verifica si un predicado es verdadero para todos los elementos de un dominio."""
+    return all(predicado(x) for x in dominio)
+
+def existe(dominio, predicado):
+    """Verifica si existe un elemento en un dominio que satisfaga un predicado."""
+    return any(predicado(x) for x in dominio)
+
+if __name__ == "__main__":
+    dominio = [1, 2, 3, 4, 5]
+    predicado = lambda x: x > 0
+    print("¿Para todo x en dominio, x > 0?", para_todo(dominio, predicado))
+    print("¿Existe x en dominio tal que x > 3?", existe(dominio, lambda x: x > 3))

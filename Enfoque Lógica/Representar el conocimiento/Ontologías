@@ -1,0 +1,24 @@
+# ontologias.py
+class Ontologia:
+    """Clase para representar una ontología."""
+    def __init__(self):
+        self.clases = set()
+        self.relaciones = {}
+
+    def agregar_clase(self, clase):
+        """Agrega una clase a la ontología."""
+        self.clases.add(clase)
+
+    def agregar_relacion(self, clase1, relacion, clase2):
+        """Agrega una relación entre dos clases."""
+        if clase1 not in self.relaciones:
+            self.relaciones[clase1] = {}
+        self.relaciones[clase1][relacion] = clase2
+
+if __name__ == "__main__":
+    ontologia = Ontologia()
+    ontologia.agregar_clase("Animal")
+    ontologia.agregar_clase("Perro")
+    ontologia.agregar_relacion("Perro", "es_un", "Animal")
+    print("Clases en la ontología:", ontologia.clases)
+    print("Relaciones en la ontología:", ontologia.relaciones)

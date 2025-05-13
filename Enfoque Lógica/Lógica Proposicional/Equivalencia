@@ -1,0 +1,14 @@
+# equivalencia_validez.py
+def es_tautologia(expresion):
+    """Verifica si una expresión es una tautología."""
+    from itertools import product
+    variables = sorted(set([c for c in expresion if c.isalpha()]))
+    for valores in product([True, False], repeat=len(variables)):
+        asignacion = dict(zip(variables, valores))
+        if not eval(expresion, {}, asignacion):
+            return False
+    return True
+
+if __name__ == "__main__":
+    expresion = "(p or not p)"
+    print(f"¿{expresion} es una tautología? {es_tautologia(expresion)}")

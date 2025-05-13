@@ -1,0 +1,32 @@
+# encadenamiento.py
+class SistemaEncadenamiento:
+    """Sistema de encadenamiento hacia adelante y hacia atrás."""
+    def __init__(self):
+        self.hechos = set()
+        self.reglas = {}
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho al sistema."""
+        self.hechos.add(hecho)
+
+    def agregar_regla(self, antecedente, consecuente):
+        """Agrega una regla al sistema."""
+        self.reglas[antecedente] = consecuente
+
+    def encadenamiento_hacia_adelante(self):
+        """Realiza encadenamiento hacia adelante."""
+        nuevos_hechos = True
+        while nuevos_hechos:
+            nuevos_hechos = False
+            for antecedente, consecuente in self.reglas.items():
+                if antecedente in self.hechos and consecuente not in self.hechos:
+                    self.hechos.add(consecuente)
+                    nuevos_hechos = True
+                    print(f"Se infirió {consecuente} a partir de {antecedente}")
+
+if __name__ == "__main__":
+    se = SistemaEncadenamiento()
+    se.agregar_hecho("A")
+    se.agregar_regla("A", "B")
+    se.agregar_regla("B", "C")
+    se.encadenamiento_hacia_adelante()

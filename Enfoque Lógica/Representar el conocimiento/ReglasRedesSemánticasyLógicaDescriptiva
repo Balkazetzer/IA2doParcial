@@ -1,0 +1,24 @@
+# redes_semanticas.py
+class RedSemantica:
+    """Clase para representar una red semántica."""
+    def __init__(self):
+        self.nodos = set()
+        self.arcos = {}
+
+    def agregar_nodo(self, nodo):
+        """Agrega un nodo a la red semántica."""
+        self.nodos.add(nodo)
+
+    def agregar_arco(self, nodo1, relacion, nodo2):
+        """Agrega un arco entre dos nodos."""
+        if nodo1 not in self.arcos:
+            self.arcos[nodo1] = {}
+        self.arcos[nodo1][relacion] = nodo2
+
+if __name__ == "__main__":
+    red = RedSemantica()
+    red.agregar_nodo("Perro")
+    red.agregar_nodo("Animal")
+    red.agregar_arco("Perro", "es_un", "Animal")
+    print("Nodos en la red semántica:", red.nodos)
+    print("Arcos en la red semántica:", red.arcos)

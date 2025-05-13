@@ -1,0 +1,15 @@
+# logica_temporal.py
+class MomentoTemporal:
+    """Clase para representar un momento temporal."""
+    def __init__(self, tiempo):
+        self.tiempo = tiempo
+        self.hechos = set()
+
+    def agregar_hecho(self, hecho):
+        """Agrega un hecho a este momento temporal."""
+        self.hechos.add(hecho)
+
+if __name__ == "__main__":
+    momento1 = MomentoTemporal(1)
+    momento1.agregar_hecho("llueve")
+    print(f"Hechos en tiempo {momento1.tiempo}: {momento1.hechos}")

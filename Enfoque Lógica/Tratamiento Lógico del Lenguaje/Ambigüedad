@@ -1,0 +1,20 @@
+# ambigüedad.py
+class Ambigüedad:
+    """Clase para representar la ambigüedad en el lenguaje."""
+    def __init__(self):
+        self.interpretaciones = []
+
+    def agregar_interpretacion(self, interpretacion):
+        """Agrega una interpretación a la lista."""
+        self.interpretaciones.append(interpretacion)
+
+    def obtener_interpretaciones(self):
+        """Obtiene las interpretaciones."""
+        return self.interpretaciones
+
+if __name__ == "__main__":
+    a = Ambigüedad()
+    a.agregar_interpretacion("interpretación1")
+    a.agregar_interpretacion("interpretación2")
+    interpretaciones = a.obtener_interpretaciones()
+    print(f"Interpretaciones: {interpretaciones}")

@@ -1,0 +1,20 @@
+# boosting.py
+class Boosting:
+    """Clase para representar un conjunto de hipótesis usando boosting."""
+    def __init__(self):
+        self.clasificadores = []
+
+    def agregar_clasificador(self, clasificador):
+        """Agrega un clasificador al conjunto."""
+        self.clasificadores.append(clasificador)
+
+    def predecir(self, ejemplo):
+        """Predice usando el conjunto de clasificadores."""
+        # Implementación simplificada
+        return "predicción"
+
+if __name__ == "__main__":
+    b = Boosting()
+    b.agregar_clasificador({"tipo": "clasificador1"})
+    prediccion = b.predecir({"atributo1": "valor1"})
+    print(f"Predicción: {prediccion}")
